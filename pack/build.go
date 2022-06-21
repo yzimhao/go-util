@@ -77,21 +77,6 @@ func Build(main string, dist string, version string) {
 		main,
 	}
 
-	// cmd := exec.Command(cmds[0], cmds[1:]...)
-
-	// fmt.Println(cmd.String())
-
-	// var out bytes.Buffer
-	// var stderr bytes.Buffer
-
-	// cmd.Stdout = &out
-	// cmd.Stderr = &stderr
-	// if err := cmd.Run(); err != nil {
-	// 	fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
-	// 	panic(err)
-	// }
-	// fmt.Println(out.String())
-
 	RunCommand(cmds[0], cmds[1:]...)
 }
 
