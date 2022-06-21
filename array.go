@@ -2,13 +2,22 @@ package utilgo
 
 import "reflect"
 
-func ArrayIn(target interface{}, array interface{}) bool {
-	for _, v := range array.([]interface{}) {
-		if v == target {
-			return true
+func ArrayIn(needle interface{}, array interface{}) bool {
+	exists := false
+
+	switch reflect.TypeOf(array).Kind() {
+	case reflect.Slice:
+		s := reflect.ValueOf(array)
+
+		for i := 0; i < s.Len(); i++ {
+			if reflect.DeepEqual(needle, s.Index(i).Interface()) == true {
+				exists = true
+				return exists
+			}
 		}
 	}
-	return false
+
+	return exists
 }
 
 func ArrayReverse(array interface{}) {
