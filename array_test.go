@@ -20,3 +20,20 @@ func TestArrayIn(t *testing.T) {
 		So(ArrayIn(1, array), ShouldBeFalse)
 	})
 }
+
+func TestArrayReverse(t *testing.T) {
+	Convey("arrayReverse", t, func() {
+		array := []int64{1, 4, 8, 9}
+		ArrayReverse(array)
+		So(array, ShouldResemble, []int64{9, 8, 4, 1})
+
+		arr := []string{"a", "b", "c"}
+		ArrayReverse(arr)
+		So(arr, ShouldResemble, []string{"c", "b", "a"})
+
+		arr1 := []string{"a"}
+		ArrayReverse(arr1)
+		So(arr1, ShouldResemble, []string{"a"})
+
+	})
+}
