@@ -1,1 +1,1 @@
-package goutil
+package utilgo

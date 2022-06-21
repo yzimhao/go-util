@@ -1,4 +1,4 @@
-module github.com/yzimhao/go-util
+module github.com/yzimhao/utilgo
 
 go 1.18
 

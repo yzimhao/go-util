@@ -1,4 +1,4 @@
-package goutil
+package utilgo
 
 func ArrayIn(target interface{}, array interface{}) bool {
 	for _, v := range array.([]interface{}) {

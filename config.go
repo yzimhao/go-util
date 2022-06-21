@@ -1,4 +1,4 @@
-package goutil
+package utilgo
 
 import "github.com/spf13/viper"
 
