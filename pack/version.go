@@ -6,13 +6,13 @@ import (
 )
 
 var (
-	VERSION     = "v0.0.0"
-	BUILD       = "2016-11-18 16:40:00"
-	COMMIT_SHA1 = ""
-	GO_VERSION  = ""
+	Version     = "v0.0.0"
+	Build_at    = "2016-11-18 16:40:00"
+	Commit_sha1 = ""
+	Go_version  = ""
 )
 
 func ShowVersion() {
-	fmt.Printf("version: %s\nbuild: %s\ncommit: %s\n%s\n", VERSION, BUILD, COMMIT_SHA1, GO_VERSION)
+	fmt.Printf("version: %s\nbuild: %s\ncommit: %s\ngo: %s\n", Version, Build_at, Commit_sha1, Go_version)
 	os.Exit(0)
 }

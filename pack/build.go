@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
+	"runtime"
 	"strings"
 	"syscall"
 	"time"
@@ -48,22 +49,30 @@ func RunCommand(name string, args ...string) (stdout string, stderr string, exit
 	return
 }
 
-func Build(main string, dist string) {
+func Build(main string, dist string, version string) {
 	fmt.Println("build")
 
 	pack := "github.com/yzimhao/utilgo/pack"
-	version := "v0.0.3"
+
+	if version == "" {
+		version = "v0.0.0"
+	}
+
 	buildTime := time.Now().Format(time.RFC3339)
 	commitSha1 := strings.ReplaceAll(getCommitSha1(), "\n", "")
-	// goVersion := fmt.Sprintf("go version: %s", runtime.Version())
+	goVersion := fmt.Sprintf("%s %s/%s", runtime.Version(), runtime.GOOS, runtime.GOARCH)
 
 	fmt.Println(version, pack, buildTime, commitSha1)
 	cmds := []string{
 		"gox",
-		// "-ldflags", `"-s -w"`,
-		"-ldflags", fmt.Sprintf(`"-X %s.VERSION=%s"`, pack, version),
+		"-ldflags", `"-s -w"`,
+		"-ldflags",
+
+		`-X '` + pack + `.Version=` + version + `' -X '` + pack + `.Build_at=` + buildTime + `' -X '` + pack + `.Commit_sha1=` + commitSha1 + `' -X '` + pack + `.Go_version=` + goVersion + `' `,
+
 		`-osarch`, "linux/amd64",
 		`-osarch`, "darwin/amd64",
+
 		"-output", fmt.Sprintf("%s_%s", dist, version),
 		main,
 	}
