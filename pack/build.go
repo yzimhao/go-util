@@ -14,7 +14,6 @@ import (
 const defaultFailedCode = 1
 
 func RunCommand(name string, args ...string) (stdout string, stderr string, exitCode int) {
-	log.Println("run command:", name, args)
 	var outbuf, errbuf bytes.Buffer
 	cmd := exec.Command(name, args...)
 	cmd.Stdout = &outbuf
@@ -45,7 +44,7 @@ func RunCommand(name string, args ...string) (stdout string, stderr string, exit
 		ws := cmd.ProcessState.Sys().(syscall.WaitStatus)
 		exitCode = ws.ExitStatus()
 	}
-	log.Printf("command result, stdout: %v, stderr: %v, exitCode: %v", stdout, stderr, exitCode)
+	// log.Printf("command result, stdout: %v, stderr: %v, exitCode: %v", stdout, stderr, exitCode)
 	return
 }
 
